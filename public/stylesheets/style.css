@@ -21,10 +21,6 @@ nav {
   text-align: right;
 }
 
-#signout {
-  display: inline-block;
-}
-
 label {
   display: block;
 }
@@ -48,4 +44,27 @@ input[type=radio] {
   float: left;
   clear: none;
   margin: 2px 0 0 2px;
+}
+
+a .top-icon {
+    display: none;
+}
+a:hover .top-icon {
+    display: inline;
+}
+
+a .bot-icon {
+    display: inline;
+}
+a:hover .bot-icon {
+    display: none;
+}
+
+a .card-img-overlay {
+    display: none;
+}
+a:hover .card-img-overlay {
+    display: inline;
+    color: white;
+    background: rgba(0, 0, 0, 0.75)
 }

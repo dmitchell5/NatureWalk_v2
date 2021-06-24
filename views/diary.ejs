@@ -1,16 +1,49 @@
-<% function dateSort(a,b) { %>
-<%  return (a.walkDate > b.walkDate); %>
-<% } %>
+<div class="jumbotron mt-5 mb-2 row">
+  <h1>Your Nature Walks</h1>
+</div>
 
-<% sorted = diary.sort(dateSort) %>
+<div>
+  <a href="/diary/add-entry">
+    <button type="button" class="btn btn-outline-success">Add a walk</button>
+  </a>
+</div>
 
-<% sorted.forEach(entry => { %>
-  <div class="row">
-    <div class="col">
-      <img src="<%= entry.photo %>" width="20%"
-    <div class="col">
-      <a href="/diary/<%= entry._id %>"><%= entry.walkDate %></a>
+<div class="mt-3">
+  <% var numCards = 0 %>
+  <% diary.forEach(entry => { %>
+    <% if (numCards == 0) { %>
+      <div class="row mb-5">
+    <% } %>
+    <div class="col-sm-4">
+      <a href="/diary/<%= entry._id %>">
+        <div class="card">
+          <img class="card-img rounded" src="<%= entry.photo %>">
+          <div class="card-img-overlay">
+            <h5 class="card-header text-light bg-secondary"><%= entry.walkDate.toUTCString() %></h5>
+
+            <!-- Only show first 20 words of comment -->
+            <% var split = entry.comments.split(" ") %>
+            <% var shortComment = "" %>
+            <% for (let i = 0; i < split.length && i < 20; i++) { %>
+              <% shortComment = shortComment + " " + split[i] %>
+            <% } %>
+            <p class="card-text mt-2">
+              <% if (split.length > 20) { %>
+                <%= shortComment %>...
+              <% } else { %>
+                <%= shortComment %>
+              <% } %>
+            </p>
+          </div>
+        </div>
+      </a>
     </div>
-  </div>
-  <hr>
-<% }) %>
+    <!-- Keep 3 cards per row -->
+    <% if (numCards == 2) { %>
+      </div>
+      <% numCards = 0 %>
+    <% } else { %>
+      <% numCards++ %>
+    <% } %>
+  <% }) %>
+</div>

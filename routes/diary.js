@@ -42,7 +42,7 @@ router.post('/new',
 router.get('/',
   isLoggedIn,
   async (req, res, next) => {
-      res.locals.diary = await Diary.find({userId:req.user._id})
+      res.locals.diary = await Diary.find({userId:req.user._id}).sort({ walkDate: -1})
       res.render('diary');
 });
 
