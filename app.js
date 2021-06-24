@@ -26,11 +26,9 @@ const isLoggedIn = authRouter.isLoggedIn
 const loggingRouter = require('./routes/logging');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const toDoRouter = require('./routes/todo');
-const toDoAjaxRouter = require('./routes/todoAjax');
 const diaryRouter = require('./routes/diary')
 
-
+const User = require('./models/User');
 
 const app = express();
 
@@ -52,22 +50,7 @@ app.use(loggingRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.use('/todo',toDoRouter);
-app.use('/todoAjax',toDoAjaxRouter);
 app.use('/diary',diaryRouter);
-
-app.get('/profiles',
-    isLoggedIn,
-    async (req,res,next) => {
-      try {
-        res.locals.profiles = await User.find({})
-        res.render('profiles')
-      }
-      catch(e){
-        next(e)
-      }
-    }
-  )
 
 app.use('/publicprofile/:userId',
     async (req,res,next) => {
@@ -110,36 +93,6 @@ app.post('/editProfile',
       }
 
     })
-
-
-app.use('/data',(req,res) => {
-  res.json([{a:1,b:2},{a:5,b:3}]);
-})
-
-const User = require('./models/User');
-
-app.get("/test",async (req,res,next) => {
-  try{
-    const u = await User.find({})
-    console.log("found u "+u)
-  }catch(e){
-    next(e)
-  }
-
-})
-
-// app.get("/add-walk", (req, res) => {
-//   res.render("demo");
-// });
-
-// app.post("/new-walk", (req,res) => {
-//   res.locals.date = req.body.date
-//   res.locals.photo = req.body.photo
-//   res.locals.identifications = req.body.identifications
-//   res.locals.location = req.body.location
-//   res.locals.comments = req.body.comments
-//   res.render("new")
-// });
 
 app.get("/about", (request, response) => {
   response.render("about");
