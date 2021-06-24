@@ -8,7 +8,7 @@ var diarySchema = Schema( {
   walkDate: Date,
   photo: String,
   location: String,
-  comment: String,
+  comments: String,
   userId: ObjectId,
   identifications: [String]
 } );

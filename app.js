@@ -28,6 +28,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const toDoRouter = require('./routes/todo');
 const toDoAjaxRouter = require('./routes/todoAjax');
+const diaryRouter = require('./routes/diary')
 
 
 
@@ -53,6 +54,7 @@ app.use('/users', usersRouter);
 
 app.use('/todo',toDoRouter);
 app.use('/todoAjax',toDoAjaxRouter);
+app.use('/diary',diaryRouter);
 
 app.get('/profiles',
     isLoggedIn,
@@ -126,18 +128,18 @@ app.get("/test",async (req,res,next) => {
 
 })
 
-app.get("/add-walk", (req, res) => {
-  res.render("demo");
-});
+// app.get("/add-walk", (req, res) => {
+//   res.render("demo");
+// });
 
-app.post("/new-walk", (req,res) => {
-  res.locals.date = req.body.date
-  res.locals.photo = req.body.photo
-  res.locals.identifications = req.body.identifications
-  res.locals.location = req.body.location
-  res.locals.comments = req.body.comments
-  res.render("new")
-});
+// app.post("/new-walk", (req,res) => {
+//   res.locals.date = req.body.date
+//   res.locals.photo = req.body.photo
+//   res.locals.identifications = req.body.identifications
+//   res.locals.location = req.body.location
+//   res.locals.comments = req.body.comments
+//   res.render("new")
+// });
 
 app.get("/about", (request, response) => {
   response.render("about");

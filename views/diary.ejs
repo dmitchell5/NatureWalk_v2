@@ -1,0 +1,16 @@
+<% function dateSort(a,b) { %>
+<%  return (a.walkDate > b.walkDate); %>
+<% } %>
+
+<% sorted = diary.sort(dateSort) %>
+
+<% sorted.forEach(entry => { %>
+  <div class="row">
+    <div class="col">
+      <img src="<%= entry.photo %>" width="20%"
+    <div class="col">
+      <a href="/diary/<%= entry._id %>"><%= entry.walkDate %></a>
+    </div>
+  </div>
+  <hr>
+<% }) %>

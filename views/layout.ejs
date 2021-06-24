@@ -41,9 +41,15 @@
         <a class="nav-link" href="/">Home</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="/add-walk">Add a Walk</a>
-      </li>
+			<% if (loggedIn) { %>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/diary/add-entry">Add a Walk</a>
+	      </li>
+
+				<li class="nav-item">
+	        <a class="nav-link" href="/diary/">My Diary</a>
+	      </li>
+			<% } %>
 
       <li class="nav-item">
         <a class="nav-link" href="/about">About the Team</a>
