@@ -61,5 +61,12 @@ router.get('/:entryId',
      res.render('view');
 });
 
+router.get('/remove/:entryId',
+  isLoggedIn,
+  async (req, res, next) => {
+      await Diary.remove({_id:req.params.entryId});
+      res.redirect('/diary')
+});
+
 
 module.exports = router;

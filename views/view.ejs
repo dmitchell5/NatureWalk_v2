@@ -6,7 +6,7 @@
   <div class="col">
     <h1>Your Latest Walk</h1>
 
-    <p>On <%= entry.walkDate %>, you took a walk in a <%= entry.location %> area.</p>
+    <p>On <%= entry.walkDate.toUTCString() %>, you took a walk in a <%= entry.location %> area.</p>
 
     <p>Here are some of the things you saw:</p>
 
@@ -18,6 +18,10 @@
 
     <p>This is what you said about the walk:</p>
     <p><%= entry.comments %></p>
+
+    <div class="mt-5">
+      <a href="/diary/remove/<%= entry._id %>">Remove Entry</a>
+    </div>
   </div>
 </div>
 <div class="row mt-5">
