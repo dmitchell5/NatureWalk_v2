@@ -61,10 +61,12 @@ a:hover .bot-icon {
 }
 
 a .card-img-overlay {
-    display: none;
+    opacity: 0%;
 }
+
 a:hover .card-img-overlay {
-    display: inline;
+    opacity: 100%;
     color: white;
-    background: rgba(0, 0, 0, 0.75)
+    background: rgba(0, 0, 0, 0.75);
+    transition: opacity 0.4s;
 }
