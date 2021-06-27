@@ -3,7 +3,7 @@
 */
 const express = require('express');
 const router = express.Router();
-const Diary = require('../models/Diary')
+const Diary = require('../models/Diary');
 
 
 /*
@@ -26,7 +26,7 @@ router.post('/new',
   async (req, res, next) => {
       const entry = new Diary(
         {walkDate:req.body.date,
-         photo:req.body.photo,
+         photo: req.body.photo,
          location:req.body.location,
          comments:req.body.comments,
          userId: req.user._id,

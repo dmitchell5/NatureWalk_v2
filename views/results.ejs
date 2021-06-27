@@ -22,17 +22,9 @@
 
   <% results.map((rec) => { %>
     <div class="mb-2">
-      <audio controls
-        <source src="<%= rec.file %>" type="audio/mpeg">
-        <p>Your browser does not support HTML5 audio, but you can still
-          <a href="<%= rec.file %>">download the music</a>.</p>
-      </audio>
-      <ul>
-        <li>Common name (English): <%= rec.en %></li>
-        <li>Scientific name: <i><%= rec.gen %> <%= rec.sp %></i></li>
-        <li>Location: <%= rec.loc %>, <%= rec.cnt %></li>
-      </ul>
+      <iframe src='https://www.xeno-canto.org/<%= rec.id %>/embed?simple=1' scrolling='no' frameborder='0' width='340' height='115'></iframe>
     </div>
     <hr>
+
   <%})%>
 </div>
