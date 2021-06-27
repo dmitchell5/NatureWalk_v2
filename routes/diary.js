@@ -4,7 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const Diary = require('../models/Diary');
-
+const axios = require("axios");
 
 /*
 this is a very simple server which maintains a key/value
@@ -31,14 +31,34 @@ router.post('/new',
          comments:req.body.comments,
          userId: req.user._id,
          identifications: req.body.identifications.split(", "),
+         songs: req.body.songs,
          createdAt: new Date()
         })
       await entry.save();
       res.redirect('/diary')
 });
 
+router.get('/add-entry',
+  isLoggedIn,
+  (req,res) => {
+    res.render('songs')
+   });
 
-// get the value associated to the key
+router.post("/add-entry-2",
+ async (req,res,next) => {
+   try {
+     const loc = req.body.location
+     const url = "https://www.xeno-canto.org/api/2/recordings?query=loc:" + loc
+     const result = await axios.get(url)
+     res.locals.results = result.data.recordings
+     res.locals.location = loc
+     res.render('add-entry')
+   } catch(error){
+     next(error)
+   }
+})
+
+// get diary for given user in reverse chronological order by walk date
 router.get('/',
   isLoggedIn,
   async (req, res, next) => {
@@ -47,11 +67,11 @@ router.get('/',
 });
 
 // get the value associated to the key
-router.get('/add-entry',
-  isLoggedIn,
-  (req,res) => {
-    res.render('add-entry')
-   });
+// router.get('/add-entry',
+//   isLoggedIn,
+//   (req,res) => {
+//     res.render('add-entry')
+//    });
 
 router.get('/:entryId',
  isLoggedIn,

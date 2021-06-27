@@ -10,7 +10,8 @@ var diarySchema = Schema( {
   location: String,
   comments: String,
   userId: ObjectId,
-  identifications: [String]
+  identifications: [String],
+  songs: [String],
 } );
 
 module.exports = mongoose.model( 'Diary', diarySchema );

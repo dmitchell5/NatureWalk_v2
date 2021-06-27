@@ -6,6 +6,17 @@
   <div class="col">
     <h1>Your Latest Walk</h1>
 
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/diary/remove/<%= entry._id %>">Remove Entry</a>
+      </div>
+      <div class="col">
+        <a href="/diary">Back to Walks</a>
+      </div>
+    </div>
+
+
+
     <p>On <%= entry.walkDate.toUTCString() %>, you took a walk in a <%= entry.location %> area.</p>
 
     <p>Here are some of the things you saw:</p>
@@ -19,13 +30,10 @@
     <p>This is what you said about the walk:</p>
     <p><%= entry.comments %></p>
 
-    <div class="mt-5">
-      <a href="/diary/remove/<%= entry._id %>">Remove Entry</a>
-    </div>
+    <% entry.songs.map((rec) => { %>
+      <div class="mb-2">
+        <iframe src='https://www.xeno-canto.org/<%= rec %>/embed?simple=1' scrolling='no' frameborder='0' width='340' height='115'></iframe>
+      </div>
+      <hr>
+    <%})%>
   </div>
-</div>
-<div class="row mt-5">
-  <div class="col">
-    <a href="/diary">Back to Walks</a>
-  </div>
-</div>

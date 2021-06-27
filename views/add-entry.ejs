@@ -60,6 +60,19 @@
       cols="50"></textarea>
     </div>
 
+    <div class="mt-4">
+      <h1>Results</h1>
+      <p>You searched for <%= location %></p>
+
+      <div class="form-group mt-4">
+      <% results.map((rec) => { %>        
+          <input type="checkbox" name="songs" value="<%= rec.id %>">
+          <iframe src='https://www.xeno-canto.org/<%= rec.id %>/embed?simple=1' scrolling='no' frameborder='0' width='340' height='115'></iframe>
+        <hr>
+      <%})%>
+      </div>
+    </div>
+
     <div class= "col form-group mb-4">
       <label for="location">Where did you walk?</label>
       <select name="location" id="location-select">
