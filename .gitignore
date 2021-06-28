@@ -3,3 +3,4 @@ dist
 auth.js
 .DS_Store
 .expo*
+.env
