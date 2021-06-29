@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 const Diary = require('../models/Diary');
 const axios = require("axios");
+const scrollToTop =  require("react-scroll-to-top");
 
 /*
 this is a very simple server which maintains a key/value
@@ -35,7 +36,7 @@ router.post('/new',
          createdAt: new Date()
         })
       await entry.save();
-      res.redirect('/diary')
+      res.redirect('/diary', {scrollToTop: scrollToTop})
 });
 
 router.get('/add-entry',
