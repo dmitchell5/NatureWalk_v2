@@ -1,9 +1,20 @@
 var express = require('express');
 var router = express.Router();
 
+
+isLoggedIn = (req,res,next) => {
+  if (res.locals.loggedIn) {
+    next()
+  } else {
+    res.render('index')
+  }
+}
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/',
+  isLoggedIn,
+  function(req, res, next) {
+  res.redirect('/diary');
 });
 
 module.exports = router;

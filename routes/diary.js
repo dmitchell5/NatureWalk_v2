@@ -66,13 +66,6 @@ router.get('/',
       res.render('diary');
 });
 
-// get the value associated to the key
-// router.get('/add-entry',
-//   isLoggedIn,
-//   (req,res) => {
-//     res.render('add-entry')
-//    });
-
 router.get('/:entryId',
  isLoggedIn,
  async (req, res, next) => {
@@ -87,6 +80,5 @@ router.get('/remove/:entryId',
       await Diary.remove({_id:req.params.entryId});
       res.redirect('/diary')
 });
-
 
 module.exports = router;
